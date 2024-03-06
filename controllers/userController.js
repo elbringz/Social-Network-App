@@ -54,6 +54,19 @@ module.exports = {
         res.status(500).json(err);
     }
    },
+// finds user by id and deletes
+   async deleteUser(req, res) {
+    try{
+        const deletedUser = await User.findOneAndRemove({_id: req.params.UserId});
+        if(!deletedUser) {
+            return res.status(404).json;
+        }
+        res.json(deletedUser)
+   }
+   catch(err) {
+    res.status(500).json(err);
+   }
+    },
 // finds user by id and adds friend to that users friends list by id
    async addFriend(req, res) {
     try {
