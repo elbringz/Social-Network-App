@@ -2,7 +2,7 @@ const {User, Thought, reactionSchema} = require('../models');
 const {Types} = require('mongoose');
 
 
-const thoughtsController = {
+module.exports = {
     
     // gets all thoughts
     async getAllThoughts  (req, res)  {
@@ -92,5 +92,3 @@ async createNewReaction(req, res) {
     }
 },
 };
-
-module.exports = thoughtsController;
