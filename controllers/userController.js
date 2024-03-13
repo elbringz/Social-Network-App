@@ -57,7 +57,7 @@ module.exports = {
 // finds user by id and deletes
    async deleteUser(req, res) {
     try{
-        const deletedUser = await User.findOneAndRemove({_id: req.params.UserId});
+        const deletedUser = await User.findOneAndDelete({_id: req.params.UserId});
         if(!deletedUser) {
             return res.status(404).json;
         }
@@ -89,7 +89,7 @@ module.exports = {
     try {
         const user = await User.findOneAndUpdate(
             {_id: req.params.UserId},
-            {$pull: {friends: req.params.FriendId}},
+            {$pull: {friends: req.params.friendId}},
             {new: true}
         );
         if(!user) {

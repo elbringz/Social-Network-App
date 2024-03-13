@@ -6,7 +6,12 @@ const users = [
     {
         username: 'mindreader',
         email: 'mr@email.com',
-        thought: [],
+        thoughts: [],
+    },
+    {
+        username: 'gwinter',
+        email: 'gw@email.com',
+        thoughts: [],
     }
 ];
 

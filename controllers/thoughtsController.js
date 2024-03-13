@@ -17,12 +17,14 @@ module.exports = {
 // gets a single thought by id
 async getSingleThought(req, res) {
     try {
-        const singleThought = await Thought.findOne({_id: req.params.thoughtId});
-        if (!thought) {
+        const singleThought = await Thought.findOne({_id: req.params.ThoughtId});
+        console.log(singleThought)
+        if (!singleThought) {
             res.status(400).json({message: 'Error: not found'});
-        } else {
-            res.json(singleThought);
-        }
+        } 
+            
+        res.json(singleThought);
+        
     } catch (err) {
         res.status(500).json(err);
     }
@@ -69,8 +71,8 @@ async updateThought(req, res) {
 async deleteReaction(req, res) {
     try {
         const deletedReaction = await Thought.findOneAndUpdate(
-            {_id: req.params.thoughtId},
-            {$pull: {reactions: {reactionId: req.params.reactionId}}},
+            {_id: req.params.ThoughtId},
+            {$pull: {reaction: {reactionID: req.params.reactionID}}},
             { runValidators: true, new: true }
         );
         deletedReaction ? res.json(deletedReaction) : res.status(404).json({message: 'Error: not found.'});
@@ -83,8 +85,8 @@ async deleteReaction(req, res) {
 async createNewReaction(req, res) {
     try {
         const newReaction = await Thought.findOneAndUpdate(
-            {_id: req.params.thoughtId},
-            {$addToSet: {reactions: req.body}},
+            {_id: req.params.ThoughtId},
+            {$addToSet: {reaction: req.body}},
             {runValidators: true, new: true}
         );
         newReaction ? res.json(newReaction) : res.status(404).json({message: 'Error: not found'});

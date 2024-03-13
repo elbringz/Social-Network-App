@@ -22,7 +22,7 @@ router.route('/:ThoughtId')
 router.route('/:ThoughtId/reactions')
 .post(createNewReaction);
 
-router.route('/:ThoughtId/reactions/:ReactionId')
+router.route('/:ThoughtId/reactions/:reactionID')
 .delete(deleteReaction)
 
 
